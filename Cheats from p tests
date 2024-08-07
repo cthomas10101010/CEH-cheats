@@ -1,0 +1,109 @@
+
+CEH Practical Measuring Stick #1
+cthomas10101010@gmail.com Switch account
+ 
+Draft saved
+* Indicates required question
+Email
+*
+cthomas10101010@gmail.com
+1. Go online to https://gchq.github.io/CyberChef/  and decode from Base64: 
+
+Q0VITWFzdGVy
+
+Answer format: AAAAaaaaa
+5 points
+CEHMaster
+2. Go online to https://crackstation.net and crack the following hash: 7c6a180b36896a0a8c02787eeafb0e4c
+
+What is the plaintext of the cracked hash?
+
+Answer format: aaaaaaaaN
+5 points
+password1
+3.  Scan the network and find the web application server that may be running mysql.  Run a a scan of all 65535 ports and identify the number of RPC services running on the server. 
+
+Hint:
+nmap -p 3306 10.10.1.0/24
+nmap -sV -p 0-65535 10.10.1.19
+
+Answer format: N
+5 points
+6
+4. Scan the network and provide the Product Version of the domain controller.
+
+Hint:
+nmap -p 389 10.10.1.0/24
+nmap -A 10.10.1.22
+
+
+Answer format: NN.N.NNNNN
+10 points
+10.0.20348
+5. Scan the network for the Android device. Exploit it and obtain the image file stored on the device. Analyzed the image file. What is depicted in the picture?
+
+Hint:
+nmap -p 5555 10.10.1.0/24
+Phonesploit 10.10.1.14
+Get shell
+Navigate /sdcard/Downloads
+ls
+pull /sdcard/Downloads
+open image file
+
+Answer format: aaaaaa
+5 points
+6.  Scan the network and find the machines with RDP running.  RDP into 10.10.1.11 from 10.10.1.22 and use cryptoforge to encrypt a file called confidential.txt. Then,  decrypt the confidential.txt.cfe file and enter the CRC value of the decrypted confidential.txt
+
+Hint: 
+nmap -p 3389 10.10.1.0/24
+Remote Desktop Connection
+Windows Explorer Search
+Cryptoforge
+HashCalc
+
+Answer format: NaaaNNaN
+5 points
+9eae93d5
+7. Run a vulnerability scan on 10.10.1.22. What is the severity level of the CVE vulnerability?
+
+Hint:
+Answer format: N.N
+5 points
+8.  Exploit a remote login and command-line execution application on a Linux target at 10.10.1.9. Navigate to the log4j-shell-poc folder and view the requirements.txt file. Enter the first line in the file .
+
+Hint:
+nmap -p 22 10.10.1.0/24
+ssh ubuntu@10.10.1.9
+toor
+find  log4j-shell-poc folder
+cat requirements.txt
+
+5 points
+colorama
+9.   Create a file called restricted.txt and copy it to the snow directory in the CEH-Tools folder. Go to https://gchq.github.io/CyberChef/ to base64 encode the string "pass@123" and use snow to embed the base64 encoded output in the restricted.txt file using a password of "password"
+
+Then extract the message back out and decode it using cyberchef. What is the decoded output?
+
+Hint:
+copy restricted.txt to snow folder
+cyberchef base64 encode  
+open cmd in snow folder
+snow -C -m "base64 encoded output" -p "password" restricted.txt restricted2.txt
+snow -C -p "password" restricted2.txt
+cyberchef base64 decode
+
+answer format: aaa*NNN
+5 points
+10. You are investigating a massive DDoS attack launched against a target at 10.10.1.11. Your objective is to identify the packets responsible for the attack and determine the least IPv4 packet count sent to the victim machine. 
+
+How would you proceed?
+5 points
+Wireshark -> Statistics -> Conversations -> IPv4 -> Sort by Packets
+Wireshark -> Statistics -> Conversations -> IPv6 -> Sort by Packets
+Wireshark -> Statistics -> Conversations -> Ethernet -> Sort by Packets
+Wireshark -> Statistics -> Conversations -> UDP -> Sort by Packets
+Page 1 of 1
+Never submit passwords through Google Forms.
+This form was created inside of Eric Reed. Report Abuse
+Google Forms
