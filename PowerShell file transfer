@@ -45,3 +45,12 @@ Open a web browser on the device you want to transfer files to, and go to http:/
 Replace <Your-IP> with the IP address of the machine running the PowerShell web server.
 Replace <filename> with the name of the file you want to download.
 Example Usage:
+
+
+
+Example Usage:
+If you want to download a file from http://example.com/file.txt and save it to C:\Users\YourName\Documents\file.txt, you would use:
+
+powershell
+Copy code
+Invoke-WebRequest -Uri "http://example.com/file.txt" -OutFile "C:\Users\YourName\Documents\file.txt"
