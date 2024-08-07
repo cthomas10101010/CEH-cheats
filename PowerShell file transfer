@@ -1,0 +1,18 @@
+
+To transfer a file from one Windows machine to another using PowerShell, you can set up a simple file transfer server using a one-liner command. Here’s how you can do it:
+
+On the Source Machine (Machine with the file to send)
+Open PowerShell as an Administrator.
+Use the following command to start a simple HTTP server:
+powershell
+Copy code
+$WebServer = New-Object -comObject "WScript.Shell"
+$WebServer.Run("powershell -NoExit -Command `""$listener = [System.Net.HttpListener]::new(); $listener.Prefixes.Add('http://+:8000/'); $listener.Start(); Write-Host 'Server started. Press Enter to stop...'; while ($listener.IsListening) { $context = $listener.GetContext(); $request = $context.Request; $response = $context.Response; $filePath = $request.Url.LocalPath.TrimStart('/'); if (Test-Path $filePath) { $bytes = [System.IO.File]::ReadAllBytes($filePath); $response.ContentLength64 = $bytes.Length; $response.OutputStream.Write($bytes, 0, $bytes.Length); $response.StatusCode = 200; } else { $response.StatusCode = 404; $bytes = [System.Text.Encoding]::UTF8.GetBytes('File not found'); $response.OutputStream.Write($bytes, 0, $bytes.Length); } $response.OutputStream.Close(); }`" -LiteralPath C:\Path\To\Serve""", 0, $false)
+Replace C:\Path\To\Serve with the path to the directory containing the file you want to transfer.
+
+On the Destination Machine (Machine receiving the file)
+Open PowerShell.
+Use the following command to download the file:
+powershell
+Copy code
+Invoke-WebRequest -Uri http://<source-machine-IP>:8000/<file-name> -OutFile <destination-path>\<file-name>
