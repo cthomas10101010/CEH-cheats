@@ -1,18 +1,47 @@
+Open PowerShell:
 
-To transfer a file from one Windows machine to another using PowerShell, you can set up a simple file transfer server using a one-liner command. Here’s how you can do it:
+Open PowerShell with administrative privileges.
+Navigate to the directory:
 
-On the Source Machine (Machine with the file to send)
-Open PowerShell as an Administrator.
-Use the following command to start a simple HTTP server:
+Use cd to navigate to the directory where your files are located.
 powershell
 Copy code
-$WebServer = New-Object -comObject "WScript.Shell"
-$WebServer.Run("powershell -NoExit -Command `""$listener = [System.Net.HttpListener]::new(); $listener.Prefixes.Add('http://+:8000/'); $listener.Start(); Write-Host 'Server started. Press Enter to stop...'; while ($listener.IsListening) { $context = $listener.GetContext(); $request = $context.Request; $response = $context.Response; $filePath = $request.Url.LocalPath.TrimStart('/'); if (Test-Path $filePath) { $bytes = [System.IO.File]::ReadAllBytes($filePath); $response.ContentLength64 = $bytes.Length; $response.OutputStream.Write($bytes, 0, $bytes.Length); $response.StatusCode = 200; } else { $response.StatusCode = 404; $bytes = [System.Text.Encoding]::UTF8.GetBytes('File not found'); $response.OutputStream.Write($bytes, 0, $bytes.Length); } $response.OutputStream.Close(); }`" -LiteralPath C:\Path\To\Serve""", 0, $false)
-Replace C:\Path\To\Serve with the path to the directory containing the file you want to transfer.
+cd C:\path\to\your\directory
+Start the web server:
 
-On the Destination Machine (Machine receiving the file)
-Open PowerShell.
-Use the following command to download the file:
+Use the Start-WebServer cmdlet to start a web server on a specified port. Below is a simple PowerShell script to start an HTTP server.
 powershell
 Copy code
-Invoke-WebRequest -Uri http://<source-machine-IP>:8000/<file-name> -OutFile <destination-path>\<file-name>
+$port = 8080
+$listener = [System.Net.HttpListener]::new()
+$listener.Prefixes.Add("http://*:8080/")
+$listener.Start()
+Write-Host "Listening on port $port..."
+
+while ($listener.IsListening) {
+    $context = $listener.GetContext()
+    $request = $context.Request
+    $response = $context.Response
+
+    $path = $request.Url.LocalPath.Substring(1)
+    $filePath = Join-Path -Path $PWD.Path -ChildPath $path
+
+    if (Test-Path -Path $filePath) {
+        $bytes = [System.IO.File]::ReadAllBytes($filePath)
+        $response.ContentLength64 = $bytes.Length
+        $response.OutputStream.Write($bytes, 0, $bytes.Length)
+    } else {
+        $response.StatusCode = 404
+        $response.StatusDescription = "Not Found"
+    }
+
+    $response.Close()
+}
+
+$listener.Stop()
+Access the server:
+
+Open a web browser on the device you want to transfer files to, and go to http://<Your-IP>:8080/<filename>.
+Replace <Your-IP> with the IP address of the machine running the PowerShell web server.
+Replace <filename> with the name of the file you want to download.
+Example Usage:
