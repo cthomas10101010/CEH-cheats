@@ -1,0 +1,27 @@
+On the Source Machine (Setting up the HTTP File Server)
+Open PowerShell and run the following command to start an HTTP file server:
+
+powershell
+Copy code
+Start-Process -NoNewWindow -FilePath "powershell" -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command `& {cd C:\Path\To\Files; python -m http.server 8000}"
+This command will serve the files in C:\Path\To\Files over HTTP on port 8000. Make sure Python is installed on the machine.
+
+On the Destination Machine (Downloading the Files)
+Open PowerShell and run the following command to download a file from the source machine:
+
+powershell
+Copy code
+Invoke-WebRequest -Uri http://<source_machine_ip>:8000/filename -OutFile C:\Path\To\Save\filename
+Replace <source_machine_ip> with the IP address of the source machine and filename with the name of the file you want to download. Also, replace C:\Path\To\Save with the path where you want to save the file on the destination machine.
+
+Example
+Assume you want to transfer a file named example.txt from C:\Shared on the source machine to C:\Downloads on the destination machine.
+
+Source Machine
+powershell
+Copy code
+Start-Process -NoNewWindow -FilePath "powershell" -ArgumentList "-ExecutionPolicy Bypass -NoProfile -Command `& {cd C:\Shared; python -m http.server 8000}"
+Destination Machine
+powershell
+Copy code
+Invoke-WebRequest -Uri http://192.168.1.100:8000/example.txt -OutFile C:\Downloads\example.txt
