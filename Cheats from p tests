@@ -1,4 +1,7 @@
-
+Available target networks:
+10.10.55.0/24
+192.168.44.0/24
+192.168.200.0/24
 CEH Practical Measuring Stick #1
 cthomas10101010@gmail.com Switch account
  
@@ -132,6 +135,219 @@ Enter the decrypted message as the answer
 Answer format: Aaaa
 5 points
 Bond
+12. A  user named Martin has hidden some hacking tool  folders in a folder called CEH-Tools on a machine with FTP, RDP, and SMB services enabled. You can not physically access the target machine, but you know that the organization has installed a RDP Remote Access Tool (RAT) on the machine. Your task is to check how many folders present in the  CEH-Tools Folder and enter the number of folders as the answer. 
+
+Hint:
+nmap -p  21, 139, 3389 10.10.1.0/24
+hydra -L Usernames.txt -P Passwords.txt 10.10.1.11 rdp
+RDP 10.10.1.11
+Search for CEH-Tools
+
+Answer format: NN
+5 points
+13. Identify a machine with FTP, RDP, and SMB services enabled. Crack the RDP credentials and RDP into the machine from another Windows system.  Locate the file hosts.txt on the E drive and enter the first line's of the file.
+
+
+
+Hint:
+
+nmap -p  21, 139, 3389 10.10.1.0/24
+hydra -L Usernames.txt -P Passwords.txt 10.10.1.11 rdp
+RDP 10.10.1.11
+Search for hosts.txt
+
+Answer format: aaa
+
+5 points
+14. You used social engineering to identify the username and password of a user on the Ubuntu machine in the 10.10.1.0/24 network, that is, ubuntu and toor. Access the target machine from the Parrot machine, perform vertical privilege escalation to that of a root user, and enter the first three letters of the first line of text in /home/ubuntu/Responder/LICENSE as the answer.
+
+Hint:
+nmap -p 22 10.10.1.0/24
+ssh ubuntu@10.10.1.9
+root
+cd /
+locate imroot.txt
+cat /imroot.txt
+Answer format: AAA
+
+5 points
+15. A suspicious executable file "ELF Test File" has been discovered on the Windows 11 machine. Determine the size of the PT_LOAD(0) segment using the SHA224 hash method. The file is in the  E:\CEH-Tools\CEHv12 Module 07 Malware Threats\Viruses folder.
+
+Hint:
+Detect It Easy
+load file
+Hash button
+PT_LOAD(0)
+
+Answer format: NNNNNNaa
+5 points
+16. Perform an SQL injection attack on your target web application www.moviescope.com and extract the password of a user lee. You have already registered on the website with credentials Sam/test.
+
+Hint:
+Parrot Firefox login to website as Sam
+Developer tools copy cookie
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value]" --dbs
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value]" -D moviescope --tables
+sqlmap -u "http://www.moviescope.com/viewprofile.aspx?id=1" --cookie="[cookie value ]" -D moviescope -T User_Login --dump
+Answer format: aaaa
+
+5 points
+17. How would you find a page on a website www.moviescope.com with page_id=33?
+5 points
+https://www.moviescope.com?page_id=33
+http://www.moviescope.com/page_id=33
+http://www.moviescope.com?page_id=33
+https://www.moviescope.com/page_id=33
+18. Analyze the traffic capture from an loT network located in the Documents folder of the ParrotSecurity machine, identify the packet with lot Publish Message, and enter the message length as the answer.
+
+Which of the following labs would you use to solve the challenge? (Select 1)
+
+Don't perform the lab, just identify it.
+
+5 points
+Mod 15, Lab 1, Task 2: Perform an SQL Injection Attack Against MSSQL to Extract Databases using sqlmap
+Mod 16, Lab 2, Task 2, Crack a WPA2 network using Aircrack-ng
+Mod 17, Lab 1, Task 4: Exploit the Android Platform through ADB using PhoneSploit
+Mod 18, Lab 2, Task 1, Capture and Analyze IoT Traffic using Wireshark
+Mod 20, Lab 4, Task 1: Perform Disk Encryption using VeraCrypt
+Know how to use https://crackstation.net/ to crack hashes of various algorithms
+19. A disgruntled employee of your target organization has stolen the company's trade secrets and encrypted them using a well-known encryption tool. The encrypted volume file "Secret" is stored on the C: drive of the Windows11 machine. The password to access the volume has been hashed and saved in the file SecretKey.txt located in the Documents folder in the Parrot machine. As an ethical hacker working with the company, you need to decrypt the hash in the  SecretKey.txt  file, access the  encrypted  volume, and find the secret code in the file named Confidential.txt.
+
+Which of the following labs or preparation recommendations would you use to solve the challenge? (Select 2)
+
+Don't perform the labs, just identify them.
+
+5 points
+Know how to use https://crackstation.net/ to crack hashes of various algorithms
+Mod 18, Lab 2, Task 1, Capture and Analyze IoT Traffic using Wireshark
+Mod 17, Lab 1, Task 4: Exploit the Android Platform through ADB using PhoneSploit
+Mod 20, Lab 4, Task 1: Perform Disk Encryption using VeraCrypt
+Mod 15, Lab 1, Task 2: Perform an SQL Injection Attack Against MSSQL to Extract Databases using sqlmap
+Mod 16, Lab 2, Task 2, Crack a WPA2 network using Aircrack-ng
+20. Your organization suspects the presence of a rogue AP in the vicinity. You are tasked with cracking the wireless encryption, connecting to the network, and setting up a honeypot. The airodump-ng tool has been used, and the Wi- Fi traffic capture named "WPA2crack-01.cap" is located in the /home/attacker/Desktop/CEHv12 Module 16 Hacking Wireless Networks/Sample Captures folder in the ParrotSecurity machine. Crack the wireless encryption and enter the total number of characters present in the Wi-Fi password.
+
+
+aircrack-ng -w password.txt W!F!_Pcap.cap
+
+Answer format: N
+5 points
+Page 1 of 1
+Never submit passwords through Google Forms.
+This form was created inside of Eric Reed. Report Abuse
+Google Forms
+
+
+CEH Practical Measuring Stick #3
+cthomas10101010@gmail.com Switch account
+ 
+Draft saved
+* Indicates required question
+Email
+*
+cthomas10101010@gmail.com
+1. Go online to https://gchq.github.io/CyberChef/  and decode from Base64: 
+
+Q0VITWFzdGVy
+
+Answer format: AAAAaaaaa
+5 points
+2. Go online to https://crackstation.net and crack the following hash: 7c6a180b36896a0a8c02787eeafb0e4c
+
+What is the plaintext of the cracked hash?
+
+Answer format: aaaaaaaaN
+5 points
+3.   Scan the network and find the web application server that may be running mysql.  Run a a scan of all 65535 ports and identify the number of RPC services running on the server. 
+
+Hint:
+nmap -p 3306 10.10.1.0/24
+nmap -sV -p 0-65535 10.10.1.19
+
+Answer format: N
+5 points
+4. Scan the network and provide the Product Version of the domain controller.
+
+Hint:
+nmap -p 389 10.10.1.0/24
+nmap -A 10.10.1.22
+
+
+Answer format: NN.N.NNNNN
+10 points
+5. Scan the network for the Android device. Exploit it and obtain the image file stored on the device. Analyzed the image file. What is depicted in the picture?
+
+Hint:
+nmap -p 5555 10.10.1.0/24
+Phonesploit 10.10.1.14
+Get shell
+Navigate /sdcard/Downloads
+ls
+pull /sdcard/Downloads
+open image file
+
+Answer format: aaaaaa
+5 points
+6.  Scan the network and find the machines with RDP running.  RDP into 10.10.1.11 from 10.10.1.22 and use cryptoforge to encrypt a file called confidential.txt. Then,  decrypt the confidential.txt.cfe file and enter the CRC value of the decrypted confidential.txt
+
+Hint: 
+nmap -p 3389 10.10.1.0/24
+Remote Desktop Connection
+Windows Explorer Search
+Cryptoforge
+HashCalc
+
+Answer format: NaaaNNaN
+5 points
+7. Run a vulnerability scan on 10.10.1.22. What is the severity level of the CVE vulnerability?
+
+Hint:
+Answer format: N.N
+5 points
+8.  Exploit a remote login and command-line execution application on a Linux target at 10.10.1.9. Navigate to the log4j-shell-poc folder and view the requirements.txt file. Enter the first line in the file .
+
+Hint:
+nmap -p 22 10.10.1.0/24
+ssh ubuntu@10.10.1.9
+toor
+find  log4j-shell-poc folder
+cat requirements.txt
+
+5 points
+9.   Create a file called restricted.txt and copy it to the snow directory in the CEH-Tools folder. Go to https://gchq.github.io/CyberChef/ to base64 encode the string "pass@123" and use snow to embed the base64 encoded output in the restricted.txt file using a password of "password"
+
+Then extract the message back out and decode it using cyberchef. What is the decoded output?
+
+Hint:
+copy restricted.txt to snow folder
+cyberchef base64 encode  
+open cmd in snow folder
+snow -C -m "base64 encoded output" -p "password" restricted.txt restricted2.txt
+snow -C -p "password" restricted2.txt
+cyberchef base64 decode
+
+answer format: aaa*NNN
+5 points
+10. You are investigating a massive DDoS attack launched against a target at 10.10.1.11. Your objective is to identify the packets responsible for the attack and determine the least IPv4 packet count sent to the victim machine. 
+
+How would you proceed?
+5 points
+Wireshark -> Statistics -> Conversations -> IPv4 -> Sort by Packets
+Wireshark -> Statistics -> Conversations -> IPv6 -> Sort by Packets
+Wireshark -> Statistics -> Conversations -> Ethernet -> Sort by Packets
+Wireshark -> Statistics -> Conversations -> UDP -> Sort by Packets
+11. A file named fi.php has been uploaded through DVWA (http://10.10.1.22:8080/DVWA). The file is located in the "C:\wamp64\www\DVWA\hackable\flags\" directory. Access the file and reveal the content. Enter the last word in the first line of the file as the answer. Also, for fun use CyberChef to Base64 encode and then decode the first line (trust me, just do it). You can log into the DVWA using the credentials admin/password.
+
+Hint:
+Login to http://10.10.1.22:8080/DVWA
+admin / password
+Set Security to low
+| dir directory
+| type file name
+cyberchef each files contents base64 decoder
+Enter the decrypted message as the answer
+
+Answer format: Aaaa
+5 points
 12. A  user named Martin has hidden some hacking tool  folders in a folder called CEH-Tools on a machine with FTP, RDP, and SMB services enabled. You can not physically access the target machine, but you know that the organization has installed a RDP Remote Access Tool (RAT) on the machine. Your task is to check how many folders present in the  CEH-Tools Folder and enter the number of folders as the answer. 
 
 Hint:
